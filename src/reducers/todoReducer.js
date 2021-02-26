@@ -1,6 +1,7 @@
 import * as todoActions from "../actions/TodoAction";
 
 const INITIAL_STATE = {
+  input: "",
   list: [],
 };
 
@@ -13,22 +14,22 @@ const TodoReducer = (state = INITIAL_STATE, action) => {
       };
 
     case todoActions.TOGGLE_COMPLETED:
-        let tempList = state.list;        
-        const todo = action.payload;
-        
-        const index = tempList.findIndex(x => x.id === action.payload.id);
-        tempList[index] = todo;
+      let tempList = state.list;
+      const todo = action.payload;
 
-        return {
-            ...state,
-            list: tempList
-        }
+      const index = tempList.findIndex((x) => x.id === action.payload.id);
+      tempList[index] = todo;
+
+      return {
+        ...state,
+        list: tempList,
+      };
 
     case todoActions.CHANGE_INPUT:
-        return{
-            ...state,
-            input:action.input
-        };
+      return {
+        ...state,
+        input: action.input,
+      };
 
     default:
       return state;
